@@ -1,34 +1,45 @@
 let encodeB64 = data => {
   const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-  let dataBin = "";
-  for (let i in data) {
-    let aux = ((data[i].charCodeAt(0) >>> 0).toString(2));
-    if (aux.length < 8) {
-      while (aux.length < 8) {
-        aux = "0" + aux;
-      }
-    }
 
-    dataBin += aux;
+  const charsToBin = data => [...data]
+    .map(ch => ch
+      .codePointAt()
+      .toString(2)
+      .padStart(8,0)
+    )
+    .join("")
+
+  let dataBin = charsToBin(data);
+  
+  const splitIn6 = data => {
+    let chunks = [];
+    for (let i = 0, e = 6, charsLength = data.length; i < charsLength; i += 6, e += 6) {
+      chunks.push(data.substring(i, e));
+    }
+    return chunks;
   }
 
-  dataBin = dataBin.match(/.{1,6}/g);
+  dataBin = splitIn6(dataBin);
 
-  let end = "";
-  for (let i in dataBin) {
-    if (dataBin[i].length == 6) {
-      end += charset[parseInt(dataBin[i],2).toString(10)];
-    } else {
-      let padding = 6 - dataBin[i].length;
-      if (padding / 2 == 1) {
-        end += charset[parseInt(dataBin[i]+"00",2).toString(10)] + "=";
-      } else if(padding / 2 == 2) {
-        end += charset[parseInt(dataBin[i]+"0000",2).toString(10)] + "==";
+  const binaryToText = data => {
+    let end = "";
+    for (let i in data) {
+      if (data[i].length == 6) {
+        end += charset[parseInt(data[i],2).toString(10)];
+      } else {
+        let padding = 6 - data[i].length;
+        if (padding / 2 == 1) {
+          end += charset[parseInt(data[i]+"00",2).toString(10)] + "=";
+        } else if(padding / 2 == 2) {
+          end += charset[parseInt(data[i]+"0000",2).toString(10)] + "==";
+        }
       }
     }
+    return end;
   }
 
-  return end;
+
+  return binaryToText(dataBin);
 };
 
 
