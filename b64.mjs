@@ -22,20 +22,20 @@ let encodeB64 = data => {
   dataBin = splitIn6(dataBin);
 
   const binaryToText = data => {
-    let end = "";
+    let end = [];
     for (let i in data) {
       if (data[i].length == 6) {
-        end += charset[parseInt(data[i],2).toString(10)];
+        end.push(charset[parseInt(data[i],2).toString(10)]);
       } else {
         let padding = 6 - data[i].length;
         if (padding / 2 == 1) {
-          end += charset[parseInt(data[i]+"00",2).toString(10)] + "=";
+          end.push(charset[parseInt(data[i]+"00",2).toString(10)] + "=");
         } else if(padding / 2 == 2) {
-          end += charset[parseInt(data[i]+"0000",2).toString(10)] + "==";
+          end.push(charset[parseInt(data[i]+"0000",2).toString(10)] + "==");
         }
       }
     }
-    return end;
+    return end.join("");
   }
 
 
