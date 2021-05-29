@@ -1,3 +1,13 @@
+/* This commentaries are made by hand to be processed by https://github.com/StringManolo/docu */
+
+/* lang -> javascript
+* name -> b64.mjs
+* title -> B64.mjs - Documentation
+* filetype -> ES6 module
+* description -> Base64 module developed to provide base64 to Quickjs compatible with Quickjs, Node, Browsers.
+* summary -> Base64 implementation, compatible with Quickjs, Node, Browsers..
+*/
+
 let encodeB64 = data => {
   const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -83,6 +93,12 @@ let decodeB64 = data => {
   return end;
 };
 
+/* function -> base64
+* summary -> Encode/Decode base64
+* param -> mode -> String -> "e" | "d" to encode or decode
+* param -> data -> String -> Base64 string to decode or text to encode
+* return -> end -> String -> Base64 encoded string or Utf-8 decoded string
+*/
 let base64 = (mode, data) => (mode == "e" ? encodeB64(data) : decodeB64(data));
 
 export default base64;
