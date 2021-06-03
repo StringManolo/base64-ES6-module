@@ -1,0 +1,19 @@
+{
+  "name": "base64-es6-module",
+  "version": "1.0.0",
+  "description": "code: javascript   # b64.mjs ---   ### ES6 module ---   ##### Base64 module developed to provide base64 to Quickjs compatible with Quickjs, Node, Browsers. ---   Base64 implementation, compatible with Quickjs, Node, Browsers..",
+  "main": "b64.mjs",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StringManolo/base64-ES6-module.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StringManolo/base64-ES6-module/issues"
+  },
+  "homepage": "https://github.com/StringManolo/base64-ES6-module#readme"
+}
